@@ -188,3 +188,6 @@ body {
     background-size: 60%;
     background-repeat: no-repeat;
 }
+.opacity {
+    opacity: 0;
+}

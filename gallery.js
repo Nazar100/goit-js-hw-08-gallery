@@ -16,6 +16,7 @@ const imagesList = images.map((image, index) => {
     const photo = document.createElement('img');
     link.appendChild(photo);
     list.appendChild(link);
+    link.href = image.original;
     photo.src = image.preview;
     photo.alt = image.description;
     photo.dataset.source = image.original;
@@ -62,7 +63,7 @@ function closeModal(event) {
 }
 
 function nextImage() {
-    let index = 0;
+    let index = '';
 
     if (largeImageRef.dataset.index < imagesList.length - 1) {
         index = largeImageRef.dataset.index++;
@@ -72,7 +73,7 @@ function nextImage() {
 }
 
 function backImage() {
-    let index = 0;
+    let index = '';
 
     if (largeImageRef.dataset.index > 0) {
         index = largeImageRef.dataset.index--;
