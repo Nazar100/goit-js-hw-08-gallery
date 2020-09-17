@@ -1,10 +1,24 @@
 export default [
   {
     preview:
+      "https://cdn.pixabay.com/photo/2019/05/14/16/43/hokkaido-4202825__340.jpg",
+    original:
+      "https://cdn.pixabay.com/photo/2019/05/14/16/43/hokkaido-4202825_1280.jpg",
+    description: "Hokkaido Flower",
+  },
+  {
+    preview:
       "https://cdn.pixabay.com/photo/2019/05/14/22/05/container-4203677__340.jpg",
     original:
       "https://cdn.pixabay.com/photo/2019/05/14/22/05/container-4203677_1280.jpg",
     description: "Container Haulage Freight",
+  },
+  {
+    preview:
+      "https://cdn.pixabay.com/photo/2019/05/16/09/47/view-4206785__340.jpg",
+    original:
+      "https://cdn.pixabay.com/photo/2019/05/16/09/47/view-4206785_1280.jpg",
+    description: "Aerial Beach View",
   },
   {
     preview:
