@@ -8,6 +8,7 @@ const closeButtonRef = document.querySelector(
 );
 const overlayRef = document.querySelector('.js-overlay');
 const nextRef = document.querySelector('.arrow-next');
+const backRef = document.querySelector('.arrow-back');
 
 const imagesList = images.map((image, index) => {
     const list = document.createElement('li');
@@ -30,7 +31,9 @@ galleryRef.addEventListener('click', galleryClick);
 closeButtonRef.addEventListener('click', closeModal);
 overlayRef.addEventListener('click', closeModal);
 nextRef.addEventListener('click', nextImage);
-let array = [];
+backRef.addEventListener('click', backImage);
+window.addEventListener('keyup', handleModalWithBtn);
+
 function galleryClick(event) {
     event.preventDefault();
     if (event.target.nodeName !== 'IMG') {
@@ -43,25 +46,61 @@ function galleryClick(event) {
     openModal();
 }
 
-images.map((image, index) => {
-    image.dataset.index = index;
-});
-
-console.log(images);
-
 function openModal() {
     modalContainerRef.classList.add('is-open');
 }
 
 function closeModal(event) {
-    if (event.target.nodeName !== 'IMG' && event.target !== nextRef) {
+    if (
+        event.target.nodeName !== 'IMG' &&
+        event.target !== nextRef &&
+        event.target !== backRef
+    ) {
         largeImageRef.src = '';
         modalContainerRef.classList.remove('is-open');
     }
 }
+
 function nextImage() {
-    largeImageRef.src = [largeImageRef.src++];
-    console.log([largeImageRef.dataset.index++]);
-    console.log(largeImageRef.dataset.index, largeImageRef);
+    let index = 0;
+
+    if (largeImageRef.dataset.index < imagesList.length - 1) {
+        index = largeImageRef.dataset.index++;
+        index++;
+    }
+    setNewSrc(index);
 }
-console.log(array);
+
+function backImage() {
+    let index = 0;
+
+    if (largeImageRef.dataset.index > 0) {
+        index = largeImageRef.dataset.index--;
+        index--;
+    }
+    setNewSrc(index);
+}
+
+function setNewSrc(index) {
+    imagesList.forEach(image => {
+        if (
+            image.lastElementChild.lastElementChild.dataset.index ===
+            index.toString()
+        ) {
+            largeImageRef.src =
+                image.lastElementChild.lastElementChild.dataset.source;
+            largeImageRef.alt = image.lastElementChild.lastElementChild.alt;
+        }
+    });
+}
+
+function handleModalWithBtn({ code }) {
+    if (code === 'Escape') {
+        largeImageRef.src = '';
+        modalContainerRef.classList.remove('is-open');
+    } else if (code === 'ArrowRight') {
+        nextImage();
+    } else if (code === 'ArrowLeft') {
+        backImage();
+    }
+}
