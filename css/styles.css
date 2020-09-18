@@ -154,7 +154,7 @@ body {
     margin: 0;
     border: none;
     /* border-radius: 50%; */
-    background-color: rgba(167, 176, 160, 0.5);
+    background-color: rgba(167, 176, 160, 0.4);
     color: #fff;
     cursor: pointer;
     transition: background-color 200ms ease-in-out;
@@ -178,7 +178,7 @@ body {
     margin: 0;
     border: none;
     /* border-radius: 50%; */
-    background-color: rgba(167, 176, 160, 0.5);
+    background-color: rgba(167, 176, 160, 0.4);
 
     cursor: pointer;
     transition: background-color 200ms ease-in-out;
@@ -187,7 +187,4 @@ body {
     background-position: center;
     background-size: 60%;
     background-repeat: no-repeat;
-}
-.opacity {
-    opacity: 0;
 }
