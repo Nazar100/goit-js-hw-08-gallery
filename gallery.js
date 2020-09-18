@@ -29,11 +29,6 @@ const imagesList = images.map((image, index) => {
 galleryRef.append(...imagesList);
 
 galleryRef.addEventListener('click', galleryClick);
-closeButtonRef.addEventListener('click', closeModal);
-overlayRef.addEventListener('click', closeModal);
-nextRef.addEventListener('click', nextImage);
-backRef.addEventListener('click', backImage);
-window.addEventListener('keyup', handleModalWithBtn);
 
 function galleryClick(event) {
     event.preventDefault();
@@ -43,6 +38,12 @@ function galleryClick(event) {
     largeImageRef.src = event.target.dataset.source;
     largeImageRef.alt = event.target.alt;
     largeImageRef.dataset.index = event.target.dataset.index;
+
+    nextRef.addEventListener('click', nextImage);
+    backRef.addEventListener('click', backImage);
+    window.addEventListener('keyup', handleModalWithBtn);
+    closeButtonRef.addEventListener('click', closeModal);
+    overlayRef.addEventListener('click', closeModal);
 
     openModal();
 }
@@ -59,6 +60,12 @@ function closeModal(event) {
     ) {
         largeImageRef.src = '';
         modalContainerRef.classList.remove('is-open');
+
+        nextRef.removeEventListener('click', nextImage);
+        backRef.removeEventListener('click', backImage);
+        window.removeEventListener('keyup', handleModalWithBtn);
+        closeButtonRef.removeEventListener('click', closeModal);
+        overlayRef.removeEventListener('click', closeModal);
     }
 }
 
@@ -70,6 +77,7 @@ function nextImage() {
         index++;
     }
     setNewSrc(index);
+    console.log(index, largeImageRef);
 }
 
 function backImage() {
@@ -80,6 +88,7 @@ function backImage() {
         index--;
     }
     setNewSrc(index);
+    console.log(index, largeImageRef);
 }
 
 function setNewSrc(index) {
